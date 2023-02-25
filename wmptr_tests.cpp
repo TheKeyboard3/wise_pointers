@@ -14,12 +14,22 @@ namespace wmptr_tests{
         i++;
     }
 
+    c::c(const c& other){
+        i = other.i;
+    }
+
     a::a(){
         i = 0;
     }
 
     a::a(int a){
         b=c(a);
+    }
+
+    a::a(const a& other){
+        i = other.i;
+        b = c(other.b);
+        q = other.q;
     }
 
     int wmptr_test_constructor(){

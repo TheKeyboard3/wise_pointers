@@ -8,6 +8,7 @@ namespace wmptr_tests{
         int i;
         c();
         c(int a);
+        c(const c& other);
         void inc();
     };
     class a{
@@ -17,6 +18,7 @@ namespace wmptr_tests{
         int q = 0;
         a();
         a(int a);
+        a(const a& other);
     };
     int wmptr_test_constructor();
     int wmptr_test_constructor_copy();

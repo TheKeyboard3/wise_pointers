@@ -10,14 +10,14 @@ class wptr_managed : public awptr_managed<T>
 {
 protected:
     T managed_obj;
-    int refcount = 0;
+    unsigned int refcount = 0;
 public:
     /**
      * Default constructor
      */
-    wptr_managed(const T obj){
+    wptr_managed(const T& obj){
         //std::cout<<"created at "<<this<<std::endl;
-        managed_obj = obj;
+        managed_obj = T(obj);
     }
 
     /**
@@ -33,7 +33,7 @@ public:
     /**
      * Destructor
      */
-    virtual ~wptr_managed(){
+    virtual ~wptr_managed() override{
         //std::cout<<"deleted at "<<this<<std::endl;
     }
 
