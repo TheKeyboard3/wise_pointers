@@ -17,7 +17,7 @@ public:
      * Default constructor
      */
     wptr_itr_accessor(){
-
+        index = IndexType();
     }
 
     /**
