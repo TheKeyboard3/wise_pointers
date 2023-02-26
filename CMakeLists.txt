@@ -1,4 +1,29 @@
 cmake_minimum_required(VERSION 3.0)
+#install headers
+set(wise_pointers
+        awptr_managed.h
+        wptr_accessor.h
+        wptr_accessor_chain.h
+        wptr_accessor_wrap.h
+        wptr_accessor_wrap_readable.h
+        wptr_agnostic.h
+        wptr_arr_manager.h
+        wptr_base_readable.h
+        wptr_complex.h
+        wptr_dereference_accessor.h
+        wptr_inheritance.h
+        wptr_inheritance_accessor.h
+        wptr_itr.h
+        wptr_itr_accessor.h
+        wptr_itr_tests.h
+        wptr_managed.h
+        wptr_no_accessor.h
+        wptr_offset_accessor.h
+        wptr_readable.h
+        wptr_simple.h
+        wptr_wrapped.h
+        wptr_writable.h
+)
 #wptr_managed tests
 set(wptr_managed_tests
         wptr_managed_tests.h
@@ -84,43 +109,43 @@ include(CTest)
 #test executables
 
 #wptr_managed tests
-add_executable(wptr_managed_tests ${wptr_managed_tests})
+add_executable(wptr_managed_tests EXCLUDE_FROM_ALL ${wptr_managed_tests})
 
 #wptr_simple tests
-add_executable(wptr_simple_tests ${wptr_simple_tests})
+add_executable(wptr_simple_tests EXCLUDE_FROM_ALL ${wptr_simple_tests})
 
 #wptr_inheritance tests
-add_executable(wptr_inheritance_tests ${wptr_inheritance_tests})
+add_executable(wptr_inheritance_tests EXCLUDE_FROM_ALL ${wptr_inheritance_tests})
 
 #wptr_itr tests
-add_executable(wptr_itr_tests ${wptr_itr_tests})
+add_executable(wptr_itr_tests EXCLUDE_FROM_ALL ${wptr_itr_tests})
 
 #wptr_dereference_accessor tests
-add_executable(wptr_dereference_accessor_tests ${wptr_dereference_accessor_tests})
+add_executable(wptr_dereference_accessor_tests EXCLUDE_FROM_ALL ${wptr_dereference_accessor_tests})
 
 #wptr_no_accessor tests
-add_executable(wptr_no_accessor_tests ${wptr_no_accessor_tests})
+add_executable(wptr_no_accessor_tests EXCLUDE_FROM_ALL ${wptr_no_accessor_tests})
 
 #wptr_inheritance_accessor tests
-add_executable(wptr_inheritance_accessor_tests ${wptr_inheritance_accessor_tests})
+add_executable(wptr_inheritance_accessor_tests EXCLUDE_FROM_ALL ${wptr_inheritance_accessor_tests})
 
 #wptr_itr_accessor tests
-add_executable(wptr_itr_accessor_tests ${wptr_itr_accessor_tests})
+add_executable(wptr_itr_accessor_tests EXCLUDE_FROM_ALL ${wptr_itr_accessor_tests})
 
 #wptr_offset_accessor tests
-add_executable(wptr_offset_accessor_tests ${wptr_offset_accessor_tests})
+add_executable(wptr_offset_accessor_tests EXCLUDE_FROM_ALL ${wptr_offset_accessor_tests})
 
 #wptr_accessor_chain tests
-add_executable(wptr_accessor_chain_tests ${wptr_accessor_chain_tests})
+add_executable(wptr_accessor_chain_tests EXCLUDE_FROM_ALL ${wptr_accessor_chain_tests})
 
 #wptr_accessor_wrap tests
-add_executable(wptr_accessor_wrap_tests ${wptr_accessor_wrap_tests})
+add_executable(wptr_accessor_wrap_tests EXCLUDE_FROM_ALL ${wptr_accessor_wrap_tests})
 
 #wptr_wrapped tests
-add_executable(wptr_wrapped_tests ${wptr_wrapped_tests})
+add_executable(wptr_wrapped_tests EXCLUDE_FROM_ALL ${wptr_wrapped_tests})
 
 #wptr_complex tests
-add_executable(wptr_complex_tests ${wptr_complex_tests})
+add_executable(wptr_complex_tests EXCLUDE_FROM_ALL ${wptr_complex_tests})
 
 
 #tests
@@ -237,3 +262,25 @@ add_test(NAME wptr_complex_member_access COMMAND wptr_complex_tests wptr_complex
 add_test(NAME wptr_complex_reference COMMAND wptr_complex_tests wptr_complex_test_reference)
 add_test(NAME wptr_complex_setAccessor_base_readable COMMAND wptr_complex_tests wptr_complex_test_setAccessor_base_readable)
 add_test(NAME wptr_complex_setAccessor_readable COMMAND wptr_complex_tests wptr_complex_test_setAccessor_readable)
+
+#install
+
+install_files(wise_pointers DESTINATION include)
+
+#test
+add_custom_target(build_and_test COMMAND ${CMAKE_CTEST_COMMAND})
+
+add_dependencies(build_and_test wptr_managed_tests
+        wptr_simple_tests
+        wptr_inheritance_tests
+        wptr_itr_tests
+        wptr_dereference_accessor_tests
+        wptr_no_accessor_tests
+        wptr_inheritance_accessor_tests
+        wptr_itr_accessor_tests
+        wptr_offset_accessor_tests
+        wptr_accessor_chain_tests
+        wptr_accessor_wrap_tests
+        wptr_wrapped_tests
+        wptr_complex_tests
+)
