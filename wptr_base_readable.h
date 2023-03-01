@@ -5,7 +5,7 @@
 #include "awptr_managed.h"
 
 /**
- * An abstract class that contains functions of a wptr_pointer that depend on the base type
+ * An abstract class that contains functions of a wise_pointer that depend on the base type
  */
 template<typename T>
 class wptr_base_readable : public wptr_agnostic

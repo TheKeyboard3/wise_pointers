@@ -4,7 +4,7 @@
 #include "wptr_accessor.h"
 
 /**
- * @todo write docs
+ * An accessor that dereferences the base type(calls the unary * operator) to perform the transformation
  */
 template<typename From, typename To>
 class wptr_dereference_accessor : public wptr_accessor<From,To>

@@ -8,7 +8,7 @@
 #include "wptr_base_readable.h"
 
 /**
- * @todo write docs
+ * A wise_pointer that uses a base object of a descendant class, and provides access to it as to an object of its public parent class
  */
 template<typename Parent, typename Child>
 class wptr_inheritance : virtual public wptr_writable<Parent>, virtual public wptr_readable<Child>, virtual public wptr_base_readable<Parent>
@@ -132,7 +132,7 @@ public:
         return acc.access((*to).operator->());
     }
 
-     /**
+    /**
      * A function that returns a copy of this pointer as an implementation of wptr_readable
      * @return a copy of this object as wptr_readable
      */

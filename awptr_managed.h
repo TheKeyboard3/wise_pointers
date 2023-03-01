@@ -2,7 +2,7 @@
 #define AWPTR_MANAGED_H
 
 /**
- * An abstract class for a template that contains an object managed by a wise pointer
+ * An abstract class for a template that contains an object managed by wise_pointers
  */
 template<typename T>
 class awptr_managed

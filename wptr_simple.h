@@ -7,7 +7,7 @@
 #include "wptr_base_readable.h"
 
 /**
- * @todo write docs
+ * A wise_pointer that performs no transformations
  */
 template<typename T>
 class wptr_simple : virtual public wptr_readable<T>, virtual public wptr_writable<T>, virtual public wptr_base_readable<T>
@@ -23,7 +23,8 @@ public:
     }
 
     /**
-     * Default constructor
+     * A constructor that takes an object of the base type as a reference
+     * @param obj an existing object of the base type
      */
     wptr_simple(const T& obj){
         to = new wptr_managed<T>(obj);
@@ -32,8 +33,7 @@ public:
 
     /**
      * Copy constructor
-     *
-     * @param other TODO
+     * @param other an exisitng object of the same type
      */
     wptr_simple(const wptr_simple<T>& other){
         if(other.to!=nullptr)to = new wptr_managed<T>(**other.to);
@@ -41,9 +41,8 @@ public:
     }
 
     /**
-     * Copy constructor
-     *
-     * @param other TODO
+     * A constructor that takes an implementation of wptr_base_readable with the same base type as an argument
+     * @param other an implementation of wptr_base_readable with the same base type that is passed as a const reference
      */
     wptr_simple(const wptr_base_readable<T>& other){
         if(other.getReferenced()!=nullptr)to = other.getReferenced();
@@ -59,9 +58,7 @@ public:
 
     /**
      * Assignment operator
-     *
-     * @param other TODO
-     * @return TODO
+     * @param other an exisitng object of the same type
      */
     const wptr_simple<T>& operator=(const wptr_simple<T>& other){
         if(to != nullptr)to->refc_dec();
@@ -72,9 +69,7 @@ public:
 
     /**
      * Assignment operator
-     *
-     * @param other TODO
-     * @return TODO
+     * @param other an implementaion of wptr_base_readable that is passed by const reference from which the opeerator takes the base object
      */
     virtual const wptr_base_readable<T>& operator=(const wptr_base_readable<T>& other) override{
         if(to != nullptr)to->refc_dec();
@@ -84,41 +79,42 @@ public:
     }
 
     /**
-     * @todo write docs
-     *
-     * @param other TODO
-     * @return TODO
+     * The equality operator that tests wether the base object of this pointer and another imbplementation of wptr_base_readable with the same base type is the same
+     * @param other an implementation of wptr_base_readable that is passed by const reference
+     * @return true if the base object of this pointer and the implementation  of wptr_base_readable is the same, false otherwise
      */
     virtual bool operator==(const wptr_base_readable<T>& other) const override{
         return to==other.getReferenced();
     }
 
     /**
-     * @todo write docs
-     *
-     * @param other TODO
-     * @return TODO
+     * The inequality operator that tests wether the base object of this pointer and another imbplementation of wptr_base_readable with the same base type is the same
+     * @param other an implementation of wptr_base_readable that is passed by const reference
+     * @return false if the base object of this pointer and the implementation  of wptr_base_readable is the same, true otherwise
      */
     virtual bool operator!=(const wptr_base_readable<T>& other) const override{
         return to!=other.getReferenced();
     }
 
     /**
-     * @todo write docs
+     * A function that returns a reference to the resulting object
+     * @return a reference to the resulting object
      */
     virtual T& operator *() const override{
         return **to;
     }
 
     /**
-     * @todo write docs
+     * A function that returns a pointer to the resulting object and provides access to its members
+     * @return a pointer to the resulting object
      */
     virtual T* operator ->() const override{
         return (*to).operator->();
     }
 
     /**
-     * @todo write docs
+     * A function that returns a copy of this pointer as an implementation of wptr_readable
+     * @return a copy of this object as wptr_readable
      */
     virtual wptr_readable<T>* duplicate() const override{
         wptr_simple<T>* retval = new wptr_simple<T>();
@@ -127,14 +123,16 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that returns true if the base object is not set
+     * @return true if the base object is not set, false otherwise
      */
     virtual bool empty() const override{
         return to==nullptr;
     }
 
     /**
-     * @todo write docs
+     * A function that returns the amount of pointers that reference the same base object
+     * @return the pointer count
      */
     virtual int getRefCount() const override{
         if(to==nullptr)return 0;
@@ -142,7 +140,8 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that returns a pointer to the base object
+     * @return a pointer to the base object
      */
     awptr_managed<T> * getReferenced() const override{
         return to;

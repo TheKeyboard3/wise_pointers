@@ -4,7 +4,7 @@
 #include "wptr_accessor.h"
 
 /**
- * @todo write docs
+ * The accessor that performs no transformation
  */
 template<typename T>
 class wptr_no_accessor : public wptr_accessor<T,T>
@@ -19,6 +19,7 @@ public:
 
     /**
      * Copy constructor
+     * @param other an existing object of the same class that is passed by const reference
      */
     wptr_no_accessor(const wptr_no_accessor<T>& other){
 
@@ -31,12 +32,18 @@ public:
 
     }
 
+    /**
+     * Assignment operator
+     * @param other an existing object of the same class that is passed by const reference
+     */
     const wptr_no_accessor<T>& operator =(const wptr_no_accessor<T>& other){
         return other;
     }
 
     /**
-     * @todo write docs
+     * A function that performs the pointer transformation
+     * @param from Is the pointer to the initial object
+     * @return is the resulting pointer
      */
     virtual T* access(T* from) const override{
         return from;

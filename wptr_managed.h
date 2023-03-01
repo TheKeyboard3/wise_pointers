@@ -2,9 +2,8 @@
 #define WPTR_MANAGED_H
 #include "awptr_managed.h"
 /**
- * @todo write docs
+ * A template class that contains an object managed by wise_pointers
  */
-//#include <iostream>
 template<typename T>
 class wptr_managed : public awptr_managed<T>
 {
@@ -13,7 +12,8 @@ protected:
     unsigned int refcount = 0;
 public:
     /**
-     * Default constructor
+     * A constructor that takes an object of the base class as an argument
+     * @param obj an existing object of the base class that is passed by const reference
      */
     wptr_managed(const T& obj){
         //std::cout<<"created at "<<this<<std::endl;
@@ -22,8 +22,7 @@ public:
 
     /**
      * Copy constructor
-     *
-     * @param other TODO
+     * @param other an existing object of the same type
      */
     wptr_managed(const wptr_managed& other){
         //std::cout<<"copied at "<<this<<std::endl;
@@ -38,14 +37,14 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that increases the amount of pointers that reference this object
      */
     virtual void refc_inc() override{
         refcount++;
     }
 
     /**
-     * @todo write docs
+     * A function that decreases the amount of pointers that reference this object
      */
     virtual void refc_dec() override{
         refcount--;
@@ -53,19 +52,25 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that returns a reference to the object contained by an object of this managed object
+     * @return a reference to the object of the specified class, that is contained within this object
      */
     virtual T& operator *() override{
         return managed_obj;
     }
 
     /**
-     * @todo write docs
+     * A function that returns a pointer to the object contained by an object of this managed object and provides access to its members
+     * @return a pointer to the object of the specified class, that is contained within this object
      */
     virtual T* operator ->() override{
         return &managed_obj;
     }
 
+    /**
+     * A function that returns the amount of pointers that reference this object
+     * @return the value of the reference counter
+     */
     virtual int getRefCount() const override{
         return refcount;
     }
