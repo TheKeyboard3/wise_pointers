@@ -1,9 +1,8 @@
 #ifndef WPTR_ARR_MANAGER_H
 #define WPTR_ARR_MANAGER_H
 /**
- * @todo write docs
+ * A template class that adapts arrays to work with wise_pointers
  */
-//#include <iostream>
 template<typename T>
 class wptr_arr_manager
 {
@@ -19,7 +18,8 @@ public:
     }
 
     /**
-     * Default constructor
+     * A constructor that takes the array size as its argument
+     * @param s the size of the array
      */
     wptr_arr_manager(unsigned int s){
         size = s;
@@ -29,7 +29,7 @@ public:
     /**
      * Copy constructor
      *
-     * @param other TODO
+     * @param other an existing array manager of the same type that is passed as a constant reference
      */
     wptr_arr_manager(const wptr_arr_manager<T>& other){
         //std::cout<<"copied at "<<this<<std::endl;
@@ -47,14 +47,17 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that returns the size of the array
+     * @return the size of the array
      */
     virtual unsigned int getSize(){
         return size;
     }
 
     /**
-     * @todo write docs
+     * A function that returns a reference to an element of the array
+     * @param i index of the element
+     * @return a reference to an element of the array
      */
     virtual T& operator[] (unsigned int i){
         return managed_arr[i];

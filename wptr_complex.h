@@ -9,7 +9,7 @@
 #include "wptr_inheritance.h"
 
 /**
- * @todo write docs
+ * A wise_pointer template class that uses a modifiable accessor to return an object of the desired type from the base object
  */
 template<typename From, typename To>
 class wptr_complex : virtual public wptr_writable<From>, virtual public wptr_readable<To>, virtual public wptr_base_readable<From>
@@ -26,7 +26,9 @@ public:
     }
 
     /**
-     * Default constructor
+     * A constructor that takes a constant reference to a object of the base type and a pointer to an implementation of wptr_readable<wptr_accessor> from which it takes the accessor
+     * @param obj constant reference to a object of the base type
+     * @param acc_set a pointer to an implementation of wptr_readable<wptr_accessor> from which the constructor takes the accessor
      */
     wptr_complex(const From& obj, wptr_readable<wptr_accessor<From,To>>* acc_set){
         to = new wptr_managed<From>(obj);
@@ -35,7 +37,9 @@ public:
     }
 
     /**
-     * Default constructor
+     * A constructor that takes a constant reference to a object of the base type and a pointer to an implementation of wptr_base_readable from which it takes the accessor
+     * @param obj constant reference to a object of the base type
+     * @param acc_set a pointer to an implementation of wptr_base_readable from which the constructor takes the accessor
      */
     template<typename ActualAccessorType>
     wptr_complex(const From& obj, wptr_base_readable<ActualAccessorType>* acc_set){
@@ -47,7 +51,9 @@ public:
     }
 
     /**
-     * Default constructor
+     * A constructor that takes a constant reference to a object of the base type and an accessor
+     * @param obj constant reference to a object of the base type
+     * @param acc_set the accessor
      */
     template<typename ActualAccessorType>
     wptr_complex(const From& obj, ActualAccessorType acc_set){
@@ -59,8 +65,7 @@ public:
 
     /**
      * Copy constructor
-     *
-     * @param other TODO
+     * @param other an existing object of the same class that is passed by constant reference
      */
     wptr_complex(const wptr_complex<From,To>& other){
         if(other.to!=nullptr)to = new wptr_managed<From>(**other.to);
@@ -69,9 +74,9 @@ public:
     }
 
     /**
-     * Copy constructor
-     *
-     * @param other TODO
+     * A constructor that takes a constant reference to an implementation of wptr_base_readable from which it takes the base object and a pointer to an implementation of wptr_readable<wptr_accessor> from which it takes the accessor
+     * @param obj constant reference to an implementation of wptr_base_readable from which the constructor takes the base object
+     * @param acc_set a pointer to an implementation of wptr_readable<wptr_accessor> from which the constructor takes the accessor
      */
     wptr_complex(const wptr_base_readable<From>& other, wptr_readable<wptr_accessor<From,To>>* acc_set){
         if(other.getReferenced()!=nullptr)to = other.getReferenced();
@@ -80,9 +85,9 @@ public:
     }
 
     /**
-     * Copy constructor
-     *
-     * @param other TODO
+     * A constructor that takes a constant reference to an implementation of wptr_base_readable from which it takes the base object and a pointer to an implementation of wptr_base_readable from which it takes the accessor
+     * @param obj constant reference to a object of the base type
+     * @param acc_set a pointer to an implementation of wptr_base_readable from which the constructor takes the accessor
      */
     template<typename ActualAccessorType>
     wptr_complex(const wptr_base_readable<From>& other, wptr_base_readable<ActualAccessorType>* acc_set){
@@ -94,9 +99,9 @@ public:
     }
 
     /**
-     * Copy constructor
-     *
-     * @param other TODO
+     * A constructor that takes a constant reference to an implementation of wptr_base_readable from which it takes the base object and an accessor
+     * @param obj constant reference to a object of the base type
+     * @param acc_set the accessor
      */
     template<typename ActualAccessorType>
     wptr_complex(const wptr_base_readable<From>& other, ActualAccessorType acc_set){
@@ -116,9 +121,7 @@ public:
 
     /**
      * Assignment operator
-     *
-     * @param other TODO
-     * @return TODO
+     * @param other an existing object of the same class that is passed by const reference
      */
     virtual const wptr_complex<From,To>& operator=(const wptr_complex<From,To>& other){
         if(to != nullptr)to->refc_dec();
@@ -131,9 +134,7 @@ public:
 
     /**
      * Assignment operator
-     *
-     * @param other TODO
-     * @return TODO
+     * @param other an existing implementation of wptr_base_readable of the same base type that is passed by const reference
      */
     virtual const wptr_base_readable<From>& operator=(const wptr_base_readable<From>& other) override{
         if(to != nullptr)to->refc_dec();
@@ -143,61 +144,60 @@ public:
     }
 
     /**
-     * @todo write docs
-     *
-     * @param other TODO
-     * @return TODO
+     * The equality operator that tests wether the base objects of this pointer, and an implementation of wptr_base_readable are the same
+     * @param other an implementation of wptr_base_readable that is passed by const reference
+     * @return true if the base objects of this pointer and an implementation of wptr_base_readable are the same, false otherwise
      */
     virtual bool operator==(const wptr_base_readable<From>& other) const override{
         return to==other.getReferenced();
     }
 
     /**
-     * @todo write docs
-     *
-     * @param other TODO
-     * @return TODO
+     * The inequality operator that tests wether the base objects of this pointer, and an implementation of wptr_base_readable are the same
+     * @param other an implementation of wptr_base_readable that is passed by const reference
+     * @return false if the base objects of this pointer and an implementation of wptr_base_readable are the same, true otherwise
      */
     virtual bool operator!=(const wptr_base_readable<From>& other) const override{
         return to!=other.getReferenced();
     }
 
     /**
-     * @todo write docs
-     *
-     * @param other TODO
-     * @return TODO
+     * The equality operator that tests wether the base objects of this pointer, and another pointer of the same class are the same
+     * @param other another object of the same class that is passed by const reference
+     * @return true if the base objects of this pointer and an implementation of wptr_base_readable are the same, false otherwise
      */
     bool operator==(const wptr_complex<From,To>& other) const{
         return to==other.getReferenced();
     }
 
     /**
-     * @todo write docs
-     *
-     * @param other TODO
-     * @return TODO
+     * The inequality operator that tests wether the base objects of this pointer, and another pointer of the same class are the same
+     * @param other another object of the same class that is passed by const reference
+     * @return false if the base objects of this pointer and an implementation of wptr_base_readable are the same, true otherwise
      */
     bool operator!=(const wptr_complex<From,To>& other) const{
         return to!=other.getReferenced();
     }
 
     /**
-     * @todo write docs
+     * A function that returns a reference to the resulting object
+     * @return a reference to the resulting object
      */
     virtual To& operator *() const override{
         return *(*acc)->access((*to).operator->());
     }
 
     /**
-     * @todo write docs
+     * A function that returns a pointer to the resulting object and provides access to its members
+     * @return a pointer to the resulting object
      */
     virtual To* operator ->() const override{
         return (*acc)->access((*to).operator->());
     }
 
     /**
-     * @todo write docs
+     * A function that returns a copy of this pointer as an implementation of wptr_readable
+     * @return a copy of this object as wptr_readable
      */
     virtual wptr_readable<To>* duplicate() const override{
          wptr_complex<From,To>* retval = new wptr_complex<From,To>();
@@ -206,14 +206,16 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that returns true if the base object or the accessor is not set
+     * @return true if the base object or the accessor is not set, false otherwise
      */
     virtual bool empty() const override{
         return to==nullptr||acc==nullptr;
     }
 
     /**
-     * @todo write docs
+     * A function that returns the amount of pointers that reference the same base object
+     * @return the pointer count
      */
     virtual int getRefCount() const override{
         if(to==nullptr)return 0;
@@ -221,21 +223,24 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that returns a pointer to the base object
+     * @return a pointer to the base object
      */
     awptr_managed<From>* getReferenced() const override{
         return to;
     }
 
     /**
-     * @todo write docs
+     * A function that returns a pointer to the accessor as an implementation of wptr_accessor
+     * @return a pointer to the accessor as an implementation of wptr_accessor
      */
     wptr_readable<wptr_accessor<From,To>>* getAccessor() const{
         return acc->duplicate();
     }
 
     /**
-     * @todo write docs
+     * A function that sets the value of the pointer to the accessor
+     * @param acc_set a pointer to an implementation of wptr_readable<wptr_accessor> from which the function takes the accessor
      */
     void setAccessor(wptr_readable<wptr_accessor<From,To>>* acc_set){
         if(acc != nullptr) delete acc;
@@ -243,7 +248,8 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that sets the value of the pointer to the accessor
+     * @param acc_set a pointer to an implementation of wptr_base_readable from which the constructor takes the accessor
      */
     template<typename ActualAccessorType>
     void setAccessor(wptr_base_readable<ActualAccessorType>* acc_set){
@@ -254,7 +260,8 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that sets the value of the pointer to the accessor
+     * @param acc_set the accessor
      */
     template<typename ActualAccessorType>
     void setAccessor(ActualAccessorType acc_set){

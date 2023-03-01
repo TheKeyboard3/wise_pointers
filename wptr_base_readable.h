@@ -5,7 +5,7 @@
 #include "awptr_managed.h"
 
 /**
- * @todo write docs
+ * An abstract class that contains functions of a wptr_pointer that depend on the base type
  */
 template<typename T>
 class wptr_base_readable : public wptr_agnostic
@@ -19,25 +19,22 @@ public:
     }
 
     /**
-     * @todo write docs
-     *
-     * @return TODO
+     * A function that returns a pointer to the base object
+     * @return a pointer to the base object
      */
     virtual awptr_managed<T>* getReferenced() const = 0;
 
     /**
-     * @todo write docs
-     *
-     * @param other TODO
-     * @return TODO
+     * The equality operator that tests wether the base objects of this pointer, and an implementation of wptr_base_readable are the same
+     * @param other an implementation of wptr_base_readable that is passed by const reference
+     * @return true if the base objects of this pointer and an implementation of wptr_base_readable are the same, false otherwise
      */
     virtual bool operator==(const wptr_base_readable<T>& other) const = 0;
 
     /**
-     * @todo write docs
-     *
-     * @param other TODO
-     * @return TODO
+     * The inequality operator that tests wether the base objects of this pointer, and an implementation of wptr_base_readable are the same
+     * @param other an implementation of wptr_base_readable that is passed by const reference
+     * @return false if the base objects of this pointer and an implementation of wptr_base_readable are the same, true otherwise
      */
     virtual bool operator!=(const wptr_base_readable<T>& other) const = 0;
 };

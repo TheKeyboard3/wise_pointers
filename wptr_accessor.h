@@ -2,7 +2,8 @@
 #define WPTR_ACCESSOR_H
 
 /**
- * @todo write docs
+ * An abstract template class that transforms a poitner to an object into a pointer to another object,
+ * that is presumably (althou not necessarily) contained within it
  */
 template<typename From, typename To>
 class wptr_accessor
@@ -16,7 +17,9 @@ public:
     }
 
     /**
-     * @todo write docs
+     * A function that performs the pointer transformation
+     * @param from Is the pointer to the initial object
+     * @return is the resulting pointer
      */
     virtual To* access(From* from) const = 0;
 };
