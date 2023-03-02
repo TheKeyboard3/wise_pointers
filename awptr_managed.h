@@ -12,7 +12,7 @@ public:
      * Destructor
      */
     virtual ~awptr_managed(){
-        //std::cout<<"deleted at "<<this<<std::endl;
+
     }
 
     /**

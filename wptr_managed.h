@@ -16,7 +16,6 @@ public:
      * @param obj an existing object of the base class that is passed by const reference
      */
     wptr_managed(const T& obj){
-        //std::cout<<"created at "<<this<<std::endl;
         managed_obj = T(obj);
     }
 
@@ -25,7 +24,6 @@ public:
      * @param other an existing object of the same type
      */
     wptr_managed(const wptr_managed& other){
-        //std::cout<<"copied at "<<this<<std::endl;
         managed_obj = other.managed_obj;
     }
 
@@ -33,7 +31,7 @@ public:
      * Destructor
      */
     virtual ~wptr_managed() override{
-        //std::cout<<"deleted at "<<this<<std::endl;
+
     }
 
     /**

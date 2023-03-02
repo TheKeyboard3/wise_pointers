@@ -32,7 +32,6 @@ public:
      * @param other an existing array manager of the same type that is passed as a constant reference
      */
     wptr_arr_manager(const wptr_arr_manager<T>& other){
-        //std::cout<<"copied at "<<this<<std::endl;
         size = other.size;
         managed_arr = new T[size];
         for(int i = 0; i < size; i++)managed_arr[i]=T(other.managed_arr[i]);
@@ -42,7 +41,6 @@ public:
      * Destructor
      */
     virtual ~wptr_arr_manager(){
-        //std::cout<<"deleted at "<<this<<std::endl;
         delete managed_arr;
     }
 
