@@ -1,7 +1,7 @@
 #include "wptr_wrapped_tests.h"
-#include "wptr_simple.h"
-#include "wptr_inheritance.h"
-#include "wptr_no_accessor.h"
+#include "../wptr_simple.h"
+#include "../wptr_inheritance.h"
+#include "../wptr_no_accessor.h"
 #include <cstring>
 
 namespace wptr_wrapped_tests{

@@ -1,6 +1,6 @@
 #ifndef WPTR_INHERITANCE_TESTS
 #define WPTR_INHERITANCE_TESTS
-#include "wptr_inheritance.h"
+#include "../wptr_inheritance.h"
 
 namespace wptr_inheritance_tests{
     class a{

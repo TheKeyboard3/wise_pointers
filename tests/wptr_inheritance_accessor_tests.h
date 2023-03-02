@@ -1,6 +1,6 @@
 #ifndef WPTR_INHERITANCE_ACCESSOR_TESTS
 #define WPTR_INHERITANCE_ACCESSOR_TESTS
-#include "wptr_inheritance_accessor.h"
+#include "../wptr_inheritance_accessor.h"
 
 namespace wptr_inheritance_accessor_tests{
     class a{

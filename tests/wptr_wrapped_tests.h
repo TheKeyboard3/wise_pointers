@@ -1,6 +1,6 @@
 #ifndef WPTR_WRAPPED_TESTS
 #define WPTR_WRAPPED_TESTS
-#include "wptr_wrapped.h"
+#include "../wptr_wrapped.h"
 
 namespace wptr_wrapped_tests{
     class a{

@@ -1,8 +1,8 @@
 #include "wptr_accessor_chain_tests.h"
-#include "wptr_inheritance_accessor.h"
-#include "wptr_offset_accessor.h"
-#include "wptr_simple.h"
-#include "wptr_inheritance.h"
+#include "../wptr_inheritance_accessor.h"
+#include "../wptr_offset_accessor.h"
+#include "../wptr_simple.h"
+#include "../wptr_inheritance.h"
 #include <stddef.h>
 #include <cstring>
 

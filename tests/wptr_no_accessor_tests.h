@@ -1,6 +1,6 @@
 #ifndef WPTR_NO_ACCESSOR_TESTS
 #define WPTR_NO_ACCESSOR_TESTS
-#include "wptr_no_accessor.h"
+#include "../wptr_no_accessor.h"
 
 namespace wptr_no_accessor_tests{
     class a{

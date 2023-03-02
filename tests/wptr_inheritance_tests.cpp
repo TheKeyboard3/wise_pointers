@@ -1,5 +1,5 @@
 #include "wptr_inheritance_tests.h"
-#include "wptr_simple.h"
+#include "../wptr_simple.h"
 #include <cstring>
 
 namespace wptr_inheritance_tests{

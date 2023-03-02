@@ -1,6 +1,6 @@
 #ifndef WPTR_ITR_ACCESSOR_TESTS
 #define WPTR_ITR_ACCESSOR_TESTS
-#include "wptr_itr_accessor.h"
+#include "../wptr_itr_accessor.h"
 
 namespace wptr_itr_accessor_tests{
     class a{

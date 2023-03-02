@@ -1,6 +1,6 @@
 #include "wptr_accessor_wrap_tests.h"
-#include "wptr_no_accessor.h"
-#include "wptr_simple.h"
+#include "../wptr_no_accessor.h"
+#include "../wptr_simple.h"
 #include <cstring>
 
 namespace wptr_accessor_wrap_tests{

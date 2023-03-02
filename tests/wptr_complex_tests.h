@@ -1,6 +1,6 @@
 #ifndef WPTR_COMPLEX_TESTS
 #define WPTR_COMPLEX_TESTS
-#include "wptr_complex.h"
+#include "../wptr_complex.h"
 
 namespace wptr_complex_tests{
     class a{

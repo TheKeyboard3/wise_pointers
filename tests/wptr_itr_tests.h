@@ -1,6 +1,6 @@
 #ifndef WPTR_ITR_TESTS
 #define WPTR_ITR_TESTS
-#include "wptr_itr.h"
+#include "../wptr_itr.h"
 
 namespace wptr_itr_tests{
     class a{

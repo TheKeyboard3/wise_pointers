@@ -1,6 +1,6 @@
 #ifndef WPTR_ACCESSOR_WRAP_TESTS
 #define WPTR_ACCESSOR_WRAP_TESTS
-#include "wptr_accessor_wrap.h"
+#include "../wptr_accessor_wrap.h"
 
 namespace wptr_accessor_wrap_tests{
     class a{

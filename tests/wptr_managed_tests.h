@@ -1,6 +1,6 @@
 #ifndef WPTR_MANAGED_TESTS
 #define WPTR_MANAGED_TESTS
-#include "wptr_managed.h"
+#include "../wptr_managed.h"
 
 namespace wptr_managed_tests{
     class a{

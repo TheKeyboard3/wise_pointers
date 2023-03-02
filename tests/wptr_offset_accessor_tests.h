@@ -1,6 +1,6 @@
 #ifndef WPTR_OFFSET_ACCESSOR_TESTS
 #define WPTR_OFFSET_ACCESSOR_TESTS
-#include "wptr_offset_accessor.h"
+#include "../wptr_offset_accessor.h"
 
 namespace wptr_offset_accessor_tests{
     class a{

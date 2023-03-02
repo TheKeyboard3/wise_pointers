@@ -1,6 +1,6 @@
 #ifndef WPTR_SIMPLE_TESTS
 #define WPTR_SIMPLE_TESTS
-#include "wptr_simple.h"
+#include "../wptr_simple.h"
 
 namespace wptr_simple_tests{
     class a{

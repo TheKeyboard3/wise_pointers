@@ -1,5 +1,5 @@
 #include "wptr_itr_tests.h"
-#include "wptr_simple.h"
+#include "../wptr_simple.h"
 #include <cstring>
 
 namespace wptr_itr_tests{

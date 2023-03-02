@@ -1,6 +1,6 @@
 #ifndef WPTR_DEREFERENCE_ACCESSOR_TESTS
 #define WPTR_DEREFERENCE_ACCESSOR_TESTS
-#include "wptr_dereference_accessor.h"
+#include "../wptr_dereference_accessor.h"
 
 namespace wptr_dereference_accessor_tests{
     class a{

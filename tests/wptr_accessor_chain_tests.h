@@ -1,6 +1,6 @@
 #ifndef WPTR_ACCESSOR_CHAIN_TESTS
 #define WPTR_ACCESSOR_CHAIN_TESTS
-#include "wptr_accessor_chain.h"
+#include "../wptr_accessor_chain.h"
 
 namespace wptr_accessor_chain_tests{
     class a{
