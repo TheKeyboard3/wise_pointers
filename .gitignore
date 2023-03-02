@@ -1,2 +1,5 @@
 build
 build/*
+.cache
+.kdev4
+wise_pointers.kdev4
