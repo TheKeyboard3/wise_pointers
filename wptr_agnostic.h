@@ -19,11 +19,5 @@ public:
      * @return true if the base object otr the accessor is not set, false otherwise
      */
     virtual bool empty() const = 0;
-
-    /**
-     * A function that returns the amount of pointers that reference the same base object
-     * @return the pointer count
-     */
-    virtual int getRefCount() const = 0;
 };
 #endif // WPTR_AGNOSTIC_H

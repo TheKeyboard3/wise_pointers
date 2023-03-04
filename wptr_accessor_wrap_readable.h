@@ -44,12 +44,6 @@ public:
     virtual void refc_dec() = 0;
 
     /**
-     * A function that returns the amount of pointers that reference this object
-     * @return the value of the reference counter
-     */
-    virtual int getRefCount() const = 0;
-
-    /**
      * A function that creates a copy of this object as an implementation of the interface for reading
      */
     virtual wptr_accessor_wrap_readable<T>* duplicate() const = 0;

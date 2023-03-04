@@ -217,9 +217,11 @@ public:
      * A function that returns the amount of pointers that reference the same base object
      * @return the pointer count
      */
-    virtual int getRefCount() const override{
+    unsigned int getRefCount() const{
         if(to==nullptr)return 0;
-        return to->getRefCount();
+        wptr_managed<From>* mngd = dynamic_cast<wptr_managed<From>*>(to);
+        if(mngd==nullptr)return 0;
+        return mngd->getRefCount();
     }
 
     /**

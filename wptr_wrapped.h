@@ -143,7 +143,11 @@ public:
      * A function that returns the amount of pointers that reference the same base object
      * @return the pointer count
      */
-    virtual int getRefCount() const override{
+    template<typename basetype>
+    unsigned int getRefCount() const{
+        if(to == nullptr)return 0;
+        wptr_accessor_wrap<basetype, T>* mngd = dynamic_cast<wptr_accessor_wrap<basetype, T>*>(to);
+        if(mngd==nullptr)return 0;
         return to->getRefCount();
     }
 

@@ -155,8 +155,11 @@ public:
      * A function that returns the amount of pointers that reference this object
      * @return the value of the reference counter
      */
-    virtual int getRefCount() const override{
-        return to->getRefCount();
+   unsigned int getRefCount() const{
+        if(to==nullptr)return 0;
+        wptr_managed<From>* mngd = dynamic_cast<wptr_managed<From>*>(to);
+        if(mngd==nullptr)return 0;
+        return mngd->getRefCount();
     }
 
     /**

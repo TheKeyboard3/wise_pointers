@@ -69,7 +69,7 @@ public:
      * A function that returns the amount of pointers that reference this object
      * @return the value of the reference counter
      */
-    virtual int getRefCount() const override{
+    unsigned int getRefCount() const{
         return refcount;
     }
 };

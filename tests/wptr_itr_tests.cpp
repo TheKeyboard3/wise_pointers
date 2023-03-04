@@ -225,7 +225,9 @@ namespace wptr_itr_tests{
         wptr_readable<a>* j = i.duplicate();
         if(i.getRefCount()!=2)return 1;
         if(i.empty())return 1;
-        if(j->getRefCount()!=2)return 1;
+        wptr_itr<arrwrapper,int,a>* dc = dynamic_cast<wptr_itr<arrwrapper,int,a>*>(j);
+        if(dc == nullptr)return 1;
+        if(dc->getRefCount()!=2)return 1;
         delete j;
         if(i.getRefCount()!=1)return 1;
         return 0;

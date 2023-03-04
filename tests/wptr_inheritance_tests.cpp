@@ -151,7 +151,9 @@ namespace wptr_inheritance_tests{
         wptr_readable<a>* j = i.duplicate();
         if(i.getRefCount()!=2)return 1;
         if(i.empty())return 1;
-        if(j->getRefCount()!=2)return 1;
+        wptr_inheritance<b,a>* dc = dynamic_cast<wptr_inheritance<b,a>*>(j);
+        if(dc == nullptr)return 1;
+        if(dc->getRefCount()!=2)return 1;
         delete j;
         if(i.getRefCount()!=1)return 1;
         return 0;

@@ -36,11 +36,5 @@ public:
      * @return a pointer to the object of the specified class, that is contained within this object
      */
     virtual T* operator ->() = 0;
-
-    /**
-     * A function that returns the amount of pointers that reference this object
-     * @return the value of the reference counter
-     */
-    virtual int getRefCount() const = 0;
 };
 #endif // AWPTR_MANAGED_H
