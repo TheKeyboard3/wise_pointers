@@ -1,7 +1,7 @@
 #ifndef WPTR_COMPLEX_H
 #define WPTR_COMPLEX_H
 
-#include "wptr_managed.h"
+#include "wptr_managed_simple.h"
 #include "wptr_accessor_wrap.h"
 #include "wptr_accessor_wrap_readable.h"
 #include "wptr_inheritance.h"

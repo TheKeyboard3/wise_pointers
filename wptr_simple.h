@@ -1,7 +1,7 @@
 #ifndef WPTR_SIMPLE_H
 #define WPTR_SIMPLE_H
 
-#include "wptr_managed.h"
+#include "wptr_managed_simple.h"
 #include "wptr_readable.h"
 #include "wptr_writable.h"
 #include "wptr_base_readable.h"
@@ -13,7 +13,7 @@ template<typename T>
 class wptr_simple : virtual public wptr_readable<T>, virtual public wptr_writable<T>, virtual public wptr_base_readable<T>
 {
 protected:
-    awptr_managed<T>* to = nullptr;
+    wptr_managed<T>* to = nullptr;
 public:
     /**
      * Empty constructor
@@ -27,7 +27,7 @@ public:
      * @param obj an existing object of the base type
      */
     wptr_simple(const T& obj){
-        to = new wptr_managed<T>(obj);
+        to = new wptr_managed_simple<T>(obj);
         if(to != nullptr)to->refc_inc();
     }
 
@@ -36,7 +36,7 @@ public:
      * @param other an exisitng object of the same type
      */
     wptr_simple(const wptr_simple<T>& other){
-        if(other.to!=nullptr)to = new wptr_managed<T>(**other.to);
+        if(other.to!=nullptr)to = new wptr_managed_simple<T>(**other.to);
         if(to != nullptr)to->refc_inc();
     }
 
@@ -136,7 +136,7 @@ public:
      */
     unsigned int getRefCount() const{
         if(to==nullptr)return 0;
-        wptr_managed<T>* mngd = dynamic_cast<wptr_managed<T>*>(to);
+        wptr_managed_simple<T>* mngd = dynamic_cast<wptr_managed_simple<T>*>(to);
         if(mngd==nullptr)return 0;
         return mngd->getRefCount();
     }
@@ -145,7 +145,7 @@ public:
      * A function that returns a pointer to the base object
      * @return a pointer to the base object
      */
-    awptr_managed<T> * getReferenced() const override{
+    wptr_managed<T> * getReferenced() const override{
         return to;
     }
 };

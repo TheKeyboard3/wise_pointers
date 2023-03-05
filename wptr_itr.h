@@ -1,7 +1,7 @@
 #ifndef WPTR_ITR_H
 #define WPTR_ITR_H
 
-#include "wptr_managed.h"
+#include "wptr_managed_simple.h"
 #include "wptr_readable.h"
 #include "wptr_writable.h"
 #include "wptr_itr_accessor.h"
@@ -15,7 +15,7 @@ template<typename Parent, typename IndexType, typename Child>
 class wptr_itr : virtual public wptr_readable<Child>, virtual public wptr_writable<Parent>, virtual public wptr_base_readable<Parent>
 {
 protected:
-    awptr_managed<Parent>* to = nullptr;
+    wptr_managed<Parent>* to = nullptr;
     wptr_simple<wptr_itr_accessor<Parent, IndexType,Child>> acc;
 public:
     /**
@@ -40,7 +40,7 @@ public:
      * @param ind an existing object of the index type that is passed by const reference
      */
     wptr_itr(const Parent& obj, const IndexType& ind){
-        to = new wptr_managed<Parent>(obj);
+        to = new wptr_managed_simple<Parent>(obj);
         if(to != nullptr)to->refc_inc();
         acc = wptr_simple<wptr_itr_accessor<Parent, IndexType,Child>>(wptr_itr_accessor<Parent, IndexType,Child>(ind));
     }
@@ -50,7 +50,7 @@ public:
      * @param other an existing object of the same class that is passed by const reference
      */
     wptr_itr(const wptr_itr<Parent,IndexType,Child>& other){
-        if(other.getReferenced()!=nullptr)to = new wptr_managed<Parent>(**other.getReferenced());
+        if(other.getReferenced()!=nullptr)to = new wptr_managed_simple<Parent>(**other.getReferenced());
         if(to != nullptr)to->refc_inc();
         acc = wptr_simple<wptr_itr_accessor<Parent, IndexType,Child>>(wptr_itr_accessor<Parent, IndexType,Child>(*other.acc));
     }
@@ -174,7 +174,7 @@ public:
      */
     unsigned int getRefCount() const{
         if(to==nullptr)return 0;
-        wptr_managed<Parent>* mngd = dynamic_cast<wptr_managed<Parent>*>(to);
+        wptr_managed_simple<Parent>* mngd = dynamic_cast<wptr_managed_simple<Parent>*>(to);
         if(mngd==nullptr)return 0;
         return mngd->getRefCount();
     }
@@ -183,7 +183,7 @@ public:
      * A function that returns a pointer to the base object
      * @return a pointer to the base object
      */
-    awptr_managed<Parent> * getReferenced() const override{
+    wptr_managed<Parent> * getReferenced() const override{
         return to;
     }
 };

@@ -4,7 +4,7 @@ add_subdirectory(tests)
 
 #install headers
 set(wise_pointers
-        awptr_managed.h
+        wptr_managed.h
         wptr_accessor.h
         wptr_accessor_chain.h
         wptr_accessor_wrap.h
@@ -19,7 +19,7 @@ set(wise_pointers
         wptr_itr.h
         wptr_itr_accessor.h
         wptr_itr_tests.h
-        wptr_managed.h
+        wptr_managed_simple.h
         wptr_no_accessor.h
         wptr_offset_accessor.h
         wptr_readable.h

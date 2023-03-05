@@ -18,7 +18,7 @@ class wptr_accessor_wrap : virtual public wptr_accessor_wrap_readable<To>
 {
 protected:
     unsigned int refcount = 0;
-    awptr_managed<From>* to = nullptr;
+    wptr_managed<From>* to = nullptr;
     wptr_readable<wptr_accessor<From,To>>* accessor = nullptr;
 public:
     /**
@@ -60,7 +60,7 @@ public:
      * @param other an existing object of the same class that is passed by a constant reference
      */
     wptr_accessor_wrap(const wptr_accessor_wrap<From,To>& other){
-        if(other.to!=nullptr)to = new wptr_managed<From>(**other.to);
+        if(other.to!=nullptr)to = new wptr_managed_simple<From>(**other.to);
         if(to != nullptr)to->refc_inc();
         if(other.accessor!=nullptr)accessor = other.accessor->duplicate();
     }
@@ -157,7 +157,7 @@ public:
      */
    unsigned int getRefCount() const{
         if(to==nullptr)return 0;
-        wptr_managed<From>* mngd = dynamic_cast<wptr_managed<From>*>(to);
+        wptr_managed_simple<From>* mngd = dynamic_cast<wptr_managed_simple<From>*>(to);
         if(mngd==nullptr)return 0;
         return mngd->getRefCount();
     }
@@ -165,7 +165,7 @@ public:
     /**
      * A function that returns the base object
      */
-    awptr_managed<From> * getReferenced() const{
+    wptr_managed<From> * getReferenced() const{
         return to;
     }
 

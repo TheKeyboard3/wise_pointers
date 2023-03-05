@@ -1,7 +1,7 @@
 #ifndef WPTR_COMPLEX_H
 #define WPTR_COMPLEX_H
 
-#include "wptr_managed.h"
+#include "wptr_managed_simple.h"
 #include "wptr_readable.h"
 #include "wptr_writable.h"
 #include "wptr_accessor.h"
@@ -15,7 +15,7 @@ template<typename From, typename To>
 class wptr_complex : virtual public wptr_writable<From>, virtual public wptr_readable<To>, virtual public wptr_base_readable<From>
 {
 protected:
-    awptr_managed<From>* to = nullptr;
+    wptr_managed<From>* to = nullptr;
     wptr_readable<wptr_accessor<From,To>>* acc = nullptr;
 public:
     /**
@@ -31,7 +31,7 @@ public:
      * @param acc_set a pointer to an implementation of wptr_readable<wptr_accessor> from which the constructor takes the accessor
      */
     wptr_complex(const From& obj, wptr_readable<wptr_accessor<From,To>>* acc_set){
-        to = new wptr_managed<From>(obj);
+        to = new wptr_managed_simple<From>(obj);
         if(to != nullptr)to->refc_inc();
         acc = acc_set->duplicate();
     }
@@ -43,7 +43,7 @@ public:
      */
     template<typename ActualAccessorType>
     wptr_complex(const From& obj, wptr_base_readable<ActualAccessorType>* acc_set){
-        to = new wptr_managed<From>(obj);
+        to = new wptr_managed_simple<From>(obj);
         if(to != nullptr)to->refc_inc();
         wptr_inheritance<ActualAccessorType,wptr_accessor<From,To>>* acc1_ptr = new wptr_inheritance<ActualAccessorType,wptr_accessor<From,To>>();
         *acc1_ptr=*acc_set;
@@ -57,7 +57,7 @@ public:
      */
     template<typename ActualAccessorType>
     wptr_complex(const From& obj, ActualAccessorType acc_set){
-        to = new wptr_managed<From>(obj);
+        to = new wptr_managed_simple<From>(obj);
         if(to != nullptr)to->refc_inc();
         wptr_inheritance<ActualAccessorType,wptr_accessor<From,To>>* acc1_ptr = new wptr_inheritance<ActualAccessorType,wptr_accessor<From,To>>(acc_set);
         acc=acc1_ptr;
@@ -68,7 +68,7 @@ public:
      * @param other an existing object of the same class that is passed by constant reference
      */
     wptr_complex(const wptr_complex<From,To>& other){
-        if(other.to!=nullptr)to = new wptr_managed<From>(**other.to);
+        if(other.to!=nullptr)to = new wptr_managed_simple<From>(**other.to);
         if(to != nullptr)to->refc_inc();
         if(other.acc!=nullptr)acc = other.acc->duplicate();
     }
@@ -219,7 +219,7 @@ public:
      */
     unsigned int getRefCount() const{
         if(to==nullptr)return 0;
-        wptr_managed<From>* mngd = dynamic_cast<wptr_managed<From>*>(to);
+        wptr_managed_simple<From>* mngd = dynamic_cast<wptr_managed_simple<From>*>(to);
         if(mngd==nullptr)return 0;
         return mngd->getRefCount();
     }
@@ -228,7 +228,7 @@ public:
      * A function that returns a pointer to the base object
      * @return a pointer to the base object
      */
-    awptr_managed<From>* getReferenced() const override{
+    wptr_managed<From>* getReferenced() const override{
         return to;
     }
 

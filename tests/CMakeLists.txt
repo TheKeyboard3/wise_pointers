@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.0)
 set(wptr_managed_tests
         wptr_managed_tests.h
         wptr_managed_tests.cpp
-        ../wptr_managed.h
+        ../wptr_managed_simple.h
 )
 #wptr_simple tests
 set(wptr_simple_tests

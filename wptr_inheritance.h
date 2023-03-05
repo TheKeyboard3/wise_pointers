@@ -1,7 +1,7 @@
 #ifndef WPTR_INH_H
 #define WPTR_INH_H
 
-#include "wptr_managed.h"
+#include "wptr_managed_simple.h"
 #include "wptr_readable.h"
 #include "wptr_writable.h"
 #include "wptr_inheritance_accessor.h"
@@ -14,7 +14,7 @@ template<typename Child, typename Parent>
 class wptr_inheritance : virtual public wptr_writable<Child>, virtual public wptr_readable<Parent>, virtual public wptr_base_readable<Child>
 {
 protected:
-    awptr_managed<Child>* to = nullptr;
+    wptr_managed<Child>* to = nullptr;
     const wptr_inheritance_accessor<Child,Parent> acc;
 public:
     /**
@@ -29,7 +29,7 @@ public:
      * @param obj constant reference to a object of the base type
      */
     wptr_inheritance(const Child& obj){
-        to = new wptr_managed<Child>(obj);
+        to = new wptr_managed_simple<Child>(obj);
         if(to != nullptr)to->refc_inc();
     }
 
@@ -38,7 +38,7 @@ public:
      * @param other an existing object of the same class passed by const reference
      */
     wptr_inheritance(const wptr_inheritance<Child,Parent>& other){
-        if(other.to!=nullptr)to = new wptr_managed<Child>(**other.to);
+        if(other.to!=nullptr)to = new wptr_managed_simple<Child>(**other.to);
         if(to != nullptr)to->refc_inc();
     }
 
@@ -156,7 +156,7 @@ public:
      */
     unsigned int getRefCount() const{
         if(to==nullptr)return 0;
-        wptr_managed<Child>* mngd = dynamic_cast<wptr_managed<Child>*>(to);
+        wptr_managed_simple<Child>* mngd = dynamic_cast<wptr_managed_simple<Child>*>(to);
         if(mngd==nullptr)return 0;
         return mngd->getRefCount();
     }
@@ -165,7 +165,7 @@ public:
      * A function that returns a pointer to the base object
      * @return a pointer to the base object
      */
-    awptr_managed<Child> * getReferenced() const override{
+    wptr_managed<Child> * getReferenced() const override{
         return to;
     }
 };

@@ -15,18 +15,18 @@ namespace wptr_managed_tests{
     }
 
     int wptr_managed_test_constructor(){
-        wptr_managed<a> i = wptr_managed<a>(a(65));
+        wptr_managed_simple<a> i = wptr_managed_simple<a>(a(65));
         return i->i!=65;
     }
 
     int wptr_managed_test_constructor_copy(){
-        wptr_managed<a> i = wptr_managed<a>(a(65));
-        wptr_managed<a> j = wptr_managed<a>(i);
+        wptr_managed_simple<a> i = wptr_managed_simple<a>(a(65));
+        wptr_managed_simple<a> j = wptr_managed_simple<a>(i);
         return j->i!=65;
     }
 
     int wptr_managed_test_reference(){
-        wptr_managed<a> i = wptr_managed<a>(a(65));
+        wptr_managed_simple<a> i = wptr_managed_simple<a>(a(65));
         if(i.getRefCount()!=0)return 1;
         i.refc_inc();
         i.refc_inc();
@@ -37,7 +37,7 @@ namespace wptr_managed_tests{
     }
 
     int wptr_managed_test_member_access(){
-        wptr_managed<a> i = wptr_managed<a>(a(65));
+        wptr_managed_simple<a> i = wptr_managed_simple<a>(a(65));
         if(i->i!=65)return 1;
         if((*i).i!=65)return 1;
         i->i++;

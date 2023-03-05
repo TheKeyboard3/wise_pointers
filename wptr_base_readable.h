@@ -2,7 +2,7 @@
 #define WPTR_BASE_READABLE_H
 
 #include "wptr_agnostic.h"
-#include "awptr_managed.h"
+#include "wptr_managed.h"
 
 /**
  * An abstract class that contains functions of a wise_pointer that depend on the base type
@@ -22,7 +22,7 @@ public:
      * A function that returns a pointer to the base object
      * @return a pointer to the base object
      */
-    virtual awptr_managed<T>* getReferenced() const = 0;
+    virtual wptr_managed<T>* getReferenced() const = 0;
 
     /**
      * The equality operator that tests wether the base objects of this pointer, and an implementation of wptr_base_readable are the same

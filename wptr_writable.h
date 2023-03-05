@@ -3,7 +3,7 @@
 
 #include "wptr_agnostic.h"
 #include "wptr_base_readable.h"
-#include "awptr_managed.h"
+#include "wptr_managed.h"
 
 /**
  * An abstract template class that contains the function used to set the base object of a wise_pointer
